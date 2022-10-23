@@ -5,10 +5,13 @@
 
 ## **Cara Running Program**
 1. Install **Python** versi terbaru
-2. Install **Package/Library** python
-  ```
-  pip install -r requirements.txt
-  ```
+   ```
+   https://www.python.org/downloads/
+   ```
+2. Install **Package/Library** python, copy atau ketik teks dibawah lalu jalankan di CMD
+   ```
+   pip install -r requirements.txt
+   ```
 3. Setelah install **Package/Library**, Run file berikut di **Visual Studio Code** :
-* Untuk PC/Laptop yang **memiliki GPU** `Run File main.py`
-* PC/Laptop yang **tidak memiliki GPU** `Run File webservice.ipynb`
+  - Untuk PC/Laptop yang **memiliki GPU** `Run File main.py`
+  - PC/Laptop yang **tidak memiliki GPU** `Run File webservice.ipynb`
