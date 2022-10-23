@@ -2,29 +2,29 @@ from flask import Flask, render_template, Response, request, redirect, url_for
 import cv2
 import mediapipe as mp
 import numpy as np
-# from tensorflow.keras.models import load_model
-# from tensorflow.keras.preprocessing import image
-# import tensorflow as tf
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+import tensorflow as tf
 
-# CATEGORIES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-# model = load_model('learnsilang.h5')
+CATEGORIES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+model = load_model('learnsilang.h5')
 
-# model.compile(
-#         optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
-#         loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False, reduction="auto", name="sparse_categorical_crossentropy"),
-#         metrics=['accuracy']        
-#         )
+model.compile(
+        optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False, reduction="auto", name="sparse_categorical_crossentropy"),
+        metrics=['accuracy']        
+        )
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(max_num_hands=1)
 mpDraw = mp.solutions.drawing_utils
 
-# def prediksi(image):
-#     image = cv2.resize(image, (64, 64))
-#     image = image.reshape(-1, 64, 64, 1).astype(float)
-#     prediction = np.argmax(model.predict(image))
+def prediksi(image):
+    image = cv2.resize(image, (64, 64))
+    image = image.reshape(-1, 64, 64, 1).astype(float)
+    prediction = np.argmax(model.predict(image))
 
-#     return CATEGORIES[prediction]
+    return CATEGORIES[prediction]
 
 def detectHandPredict(frame):
     results = hands.process(frame)
@@ -56,17 +56,17 @@ def detectHandPredict(frame):
                     crop = frame[(y1-40):(y2+40), (x1-40):(x2+40)]
 
                     # Prediksi
-                    # crop = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
-                    # result = prediksi(crop)
-                    # return result
+                    crop = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
+                    result = prediksi(crop)
+                    return result
 
             mpDraw.draw_landmarks(frame, hand_landmarks, mpHands.HAND_CONNECTIONS, 
             mpDraw.DrawingSpec(color=(85, 255, 211), thickness=2, circle_radius=2))
 
-
 camm = cv2.VideoCapture(1)
 
-# Aplhabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+Aplhabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
 def webImage():
     count = 0
     resultTrue = 0
@@ -81,22 +81,24 @@ def webImage():
         
         detectHandPredict(frame)
 
-        # if status:
-        #     count += 1
+        if status:
+            count += 1
         
-        # # print(count)
-        # if count%45 == 0:
-        #     hasil = detectHandPredict(frame)
-        #     if hasil == Aplhabet[resultTrue]:
-        #         print(Aplhabet[resultTrue] + " : " + str(hasil) + " benar")
-        #         stat = 'Benar'
-        #         resultTrue += 1
-        #     else:
-        #         stat = 'Salah'
-        #         print(Aplhabet[resultTrue] + " : " + str(hasil) + " salah")
-        # cv2.putText(frame, stat, (40, 110), cv2.FONT_HERSHEY_PLAIN, 1, (0,0,0), 1)
-        # cv2.rectangle(frame, (x-90, 85), (x-20, 155),(238, 249, 252), -1, cv2.LINE_8)
-        # cv2.putText(frame, Aplhabet[resultTrue], (x-70, 135), cv2.FONT_HERSHEY_PLAIN, 3, (0,0,0), 2)
+        # print(count)
+        if count%45 == 0:
+            hasil = detectHandPredict(frame)
+            if hasil == Aplhabet[resultTrue]:
+                print(Aplhabet[resultTrue] + " : " + str(hasil) + " benar")
+                stat = 'Benar'
+                resultTrue += 1
+            else:
+                stat = 'Salah'
+                print(Aplhabet[resultTrue] + " : " + str(hasil) + " salah")
+        cv2.putText(frame, stat, (40, 110), cv2.FONT_HERSHEY_PLAIN, 1, (0,0,0), 1)
+        cv2.rectangle(frame, (x-70, 85), (x-20, 135),(151, 134, 20), -1, cv2.LINE_8)
+        #gambar tangan
+        cv2.rectangle(frame, (x-140, 85), (x-90, 135),(238, 249, 252), -1, cv2.LINE_8)
+        cv2.putText(frame, Aplhabet[resultTrue], (x-128, 125), cv2.FONT_HERSHEY_PLAIN, 2.5, (0,0, 0), 2)
 
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
@@ -122,15 +124,6 @@ def menus():
 @app.route('/camera', methods=['GET', 'POST'])
 def camera():
     cat = request.args.get('category')
-    # resultTrue = 0
-    # if cat == 'alphabet':
-    #     while(True):
-    #         if resultPredict() == Aplhabet[resultTrue]:
-    #             # print(Aplhabet[resultTrue] + " : " + "benar")
-    #             resultTrue += 1
-                # print(resultTrue)
-            # else: 
-                # print(Aplhabet[resultTrue] + " : " + "salah")
 
     return render_template('camera.html', alph = cat)
 

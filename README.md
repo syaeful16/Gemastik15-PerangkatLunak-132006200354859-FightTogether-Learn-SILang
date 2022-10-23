@@ -25,9 +25,7 @@
    git clone https://github.com/syaeful16/Gemastik15-PerangkatLunak-132006200354859-FightTogether-Learn-SILang.git
    ```
 
-4. Setelah install **Package/Library**, Run file berikut di **Visual Studio Code** :
-  - Untuk PC/Laptop yang **memiliki GPU** `Run File main.py`
-  - PC/Laptop yang **tidak memiliki GPU** `Run File webservice.ipynb`
+4. Setelah install **Package/Library**, Run file `webservice.ipynb` berikut di **Visual Studio Code** :
 
 ---
 ## **Petunjuk penggunaan dalam website**
