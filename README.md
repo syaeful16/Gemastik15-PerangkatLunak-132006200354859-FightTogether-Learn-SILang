@@ -35,3 +35,8 @@
 2. Klik Tombol **Mulai Sekarang** untuk menuju halaman Menu Pembelajaran
    ![Halaman kedua](https://user-images.githubusercontent.com/92679271/197380144-8238e995-756d-4fe0-b69a-5a40a0a6b628.png)
 3. Pilih menu yang di inginkan, dan mulailah belajar 😎🥳️
+
+---
+
+# **Surat Pernyataan**
+- Surat Pernyataan Karya [Surat Peryataan]: https://drive.google.com/file/d/1jd_OoBhb7d8eyTbTgLuJNYA9Yok50gDc/view?usp=sharing
