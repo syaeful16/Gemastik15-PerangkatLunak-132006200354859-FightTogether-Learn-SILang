@@ -39,6 +39,4 @@
 ---
 
 # **Surat Pernyataan**
-- Surat Pernyataan Keaslian Karya [Surat Peryataan Keaslian]
-
-[Surat Peryataan Keaslian]: (https://drive.google.com/file/d/1jd_OoBhb7d8eyTbTgLuJNYA9Yok50gDc/view?usp=sharing)
+- Surat Pernyataan Keaslian Karya [Surat Peryataan Keaslian](https://drive.google.com/file/d/1jd_OoBhb7d8eyTbTgLuJNYA9Yok50gDc/view?usp=sharing)
