@@ -40,7 +40,7 @@
 
 # **Surat Pernyataan**
 - Surat Pernyataan Keaslian Karya [Unduh disini](https://drive.google.com/file/d/1jd_OoBhb7d8eyTbTgLuJNYA9Yok50gDc/view?usp=sharing)
-- Surat Similariti Turnitin [Unduh disini]https://drive.google.com/file/d/10tBO-N4kcbdHeqhWeKN71nsTWMk0NCDZ/view?usp=sharing
+- Surat Similariti Turnitin [Unduh disini](https://drive.google.com/file/d/10tBO-N4kcbdHeqhWeKN71nsTWMk0NCDZ/view?usp=sharing)
 
 ---
 
